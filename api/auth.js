@@ -1,26 +1,29 @@
-'use strict';
+"use strict";
 
-const { Router } = require('express')
-const { register } = require('../controller/user');
+const { Router } = require("express");
+const { register, verifytoken, createProfile } = require("../controller/user");
+const authMiddleware = require("../middlewares/AuthMiddleWare");
 
 class AuthAPI {
-    constructor() {
-        this.router = Router();
-        this.setupRoutes();
-    }
+  constructor() {
+    this.router = Router();
+    this.setupRoutes();
+  }
 
-    setupRoutes() {
-        const router = this.router;
-        router.post('/register', register);
-    }
+  setupRoutes() {
+    const router = this.router;
+    router.post("/register", register);
+    router.post("/verify-token", verifytoken);
+    router.post("/create-profile", authMiddleware(), createProfile);
+  }
 
-    getRouter() {
-        return this.router;
-    }
+  getRouter() {
+    return this.router;
+  }
 
-    getRouterGroup() {
-        return '/auth';
-    }
+  getRouterGroup() {
+    return "/auth";
+  }
 }
 
-module.exports = AuthAPI; 
+module.exports = AuthAPI;

@@ -4,6 +4,7 @@ const cors = require('cors');
 const API = require('./api/index.js');
 
 const DB_CONNECT = require('./config/dbConnect.js');
+const { errorHandler } = require('./middlewares/errorHandling.js');
 
 require('dotenv').config();
 
@@ -19,7 +20,7 @@ app.use(express.urlencoded({ extended: true }));
 app.get('/', (req, res) => res.json({ message: 'Welcome to the Fate API' }));
 
 new API(app).registerGroups();
-
+app.use(errorHandler);
 
 
 server.listen(PORT, () => console.log(`Server port ${PORT}`));

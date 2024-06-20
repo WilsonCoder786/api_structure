@@ -12,3 +12,8 @@ exports.STATUS_CODE = Object.freeze({
     SERVICE_UNAVAILABLE: 503,
 });
 
+exports.ROLES = Object.freeze({
+    ADMIN: 'admin',
+    USER: 'user',
+    ORGANIZATION: 'organization'
+})

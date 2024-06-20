@@ -1,6 +1,7 @@
 'use strict';
 
 const AuthAPI = require('./auth');
+const OtpAPI = require('./otp');
 const RootAPI = require('./root');
 
 
@@ -16,7 +17,7 @@ class API {
     loadRouteGroups() {
         this.routeGroups.push(new RootAPI());
         this.routeGroups.push(new AuthAPI());
-        // this.routeGroups.push(new otpApi());
+        this.routeGroups.push(new OtpAPI());
         // this.routeGroups.push(new userApi());
         // this.routeGroups.push(new notificationApi());
         // this.routeGroups.push(new messageApi());
